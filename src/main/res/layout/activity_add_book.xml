@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddBookActivity">
+
+    <TextView
+        android:id="@+id/isbn_input_bar_title"
+        android:layout_width="259dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginBottom="163dp"
+        android:text="Enter ISBN:"
+        android:textColor="#3F51B5"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/show_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/isbn_input_bar"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="279dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="531dp"
+        android:ems="10"
+        android:hint="Enter ISBN number"
+        android:inputType="number"
+        android:singleLine="false"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isbn_input_bar_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/isbn_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="Search"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintEnd_toStartOf="@+id/isbn_add_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isbn_input_bar" />
+
+    <Button
+        android:id="@+id/isbn_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:enabled="false"
+        android:text="Add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/isbn_search_button"
+        app:layout_constraintTop_toBottomOf="@+id/isbn_input_bar" />
+
+    <TextView
+        android:id="@+id/show_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginBottom="406dp"
+        android:text="Book Information"
+        android:textColor="#3F51B5"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isbn_input_bar_title" />
+
+    <TextView
+        android:id="@+id/show_book_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book Name:  "
+        android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/book_name"
+        app:layout_constraintStart_toStartOf="@+id/show_title" />
+
+    <TextView
+        android:id="@+id/book_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text=""
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/show_book_name"
+        app:layout_constraintTop_toBottomOf="@+id/show_title" />
+
+    <TextView
+        android:id="@+id/show_book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="32dp"
+        android:text="Author:  "
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/show_book_name"
+        app:layout_constraintTop_toTopOf="@+id/show_book_name" />
+
+    <TextView
+        android:id="@+id/book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/show_book_author"
+        app:layout_constraintStart_toEndOf="@+id/show_book_author" />
+
+    <TextView
+        android:id="@+id/show_book_press"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Press:  "
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/show_book_author"
+        app:layout_constraintTop_toBottomOf="@+id/show_book_author" />
+
+    <TextView
+        android:id="@+id/book_press"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/show_book_press"
+        app:layout_constraintStart_toEndOf="@+id/show_book_press" />
+
+    <TextView
+        android:id="@+id/show_book_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="Published Year:  "
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/show_book_press"
+        app:layout_constraintTop_toBottomOf="@+id/show_book_press" />
+
+    <TextView
+        android:id="@+id/book_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text=""
+        android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/show_book_year"
+        app:layout_constraintStart_toEndOf="@+id/show_book_year" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
