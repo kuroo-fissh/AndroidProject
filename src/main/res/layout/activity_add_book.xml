@@ -8,26 +8,23 @@
 
     <TextView
         android:id="@+id/isbn_input_bar_title"
-        android:layout_width="259dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="94dp"
-        android:layout_marginBottom="163dp"
+        android:layout_width="267dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="12dp"
         android:text="Enter ISBN:"
         android:textColor="#3F51B5"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/show_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/isbn_input_bar"
+        app:layout_constraintStart_toStartOf="@+id/isbn_input_bar" />
 
     <EditText
         android:id="@+id/isbn_input_bar"
         style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="279dp"
-        android:layout_height="48dp"
+        android:layout_height="57dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="531dp"
+        android:layout_marginBottom="432dp"
         android:ems="10"
         android:hint="Enter ISBN number"
         android:inputType="number"
@@ -35,26 +32,26 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/isbn_input_bar_title"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/isbn_search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="30dp"
         android:text="Search"
         app:backgroundTint="#2196F3"
         app:layout_constraintEnd_toStartOf="@+id/isbn_add_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/isbn_input_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/isbn_input_bar_title" />
 
     <Button
         android:id="@+id/isbn_add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:enabled="false"
         android:text="Add"
@@ -66,14 +63,13 @@
         android:id="@+id/show_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginBottom="406dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
         android:text="Book Information"
         android:textColor="#3F51B5"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/isbn_input_bar_title" />
+        app:layout_constraintStart_toStartOf="@+id/isbn_search_button"
+        app:layout_constraintTop_toBottomOf="@+id/isbn_search_button" />
 
     <TextView
         android:id="@+id/show_book_name"
