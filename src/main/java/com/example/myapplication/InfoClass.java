@@ -14,11 +14,18 @@ public class InfoClass extends Application{
         String author;
         String press;
         String year;
-        public book(String name, String author, String press, String year){
+        String review;
+        float rating;
+        boolean isEditing;
+
+        public book(String name, String author, String press, String year, String review){
             this.name = name;
             this.author = author;
             this.press = press;
             this.year = year;
+            this.review = review;
+            this.rating = 0.0F;
+            this.isEditing = false;
         }
 
         public String getName() {

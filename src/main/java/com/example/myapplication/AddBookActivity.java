@@ -93,7 +93,7 @@ public class AddBookActivity extends AppCompatActivity {
                                 isbn_add_button.setOnClickListener(new View.OnClickListener(){
                                     @Override
                                     public void onClick(View v) {
-                                        book newbook = new book(name,author,press,year);
+                                        book newbook = new book(name,author,press,year, " ");
                                         boolean dup_flag = false;
                                         InfoClass info = (InfoClass)getApplicationContext();
                                         Log.v("duplicate", "info size: " + InfoClass.bookinfo.size());

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookListActivity extends AppCompatActivity {
@@ -26,7 +28,7 @@ public class BookListActivity extends AppCompatActivity {
     private Button sort_button;
     private TextView manage_menu;
 
-    public static class bookAdatper extends  RecyclerView.Adapter<bookAdatper.ViewHolder>{
+    public static class bookAdatper extends  RecyclerView.Adapter<bookAdatper.ViewHolder> {
         private List<InfoClass.book> myBookList;
         private bookAdatper.OnItemClickListener onItemClickListener;
 
@@ -60,7 +62,7 @@ public class BookListActivity extends AppCompatActivity {
              return myBookList.size();
          }
 
-         class ViewHolder extends RecyclerView.ViewHolder{
+        class ViewHolder extends RecyclerView.ViewHolder{
             TextView bookname;
             TextView bookAuthor;
             TextView bookpress;
@@ -104,15 +106,23 @@ public class BookListActivity extends AppCompatActivity {
             @Override
             public void onItemLongClick(View view, int position) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(BookListActivity.this);
-                builder.setMessage("Delete item?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setMessage("What do you want to do with this book");
+                builder.setPositiveButton("Delete it", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         InfoClass.bookinfo.remove(position);
                         adatper.notifyDataSetChanged();
                     }
                 });
-                builder.setNeutralButton("cancel", null);
+                builder.setNegativeButton("Show review", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.v("position", "Name: " + InfoClass.bookinfo.get(position).name);
+                        InfoClass.bookinfo.get(position).isEditing = true;
+                        Intent intent = new Intent(BookListActivity.this, BookReviewActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 builder.create().show();
             }
         });

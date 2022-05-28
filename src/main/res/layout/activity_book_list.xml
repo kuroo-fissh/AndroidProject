@@ -36,8 +36,8 @@
         android:id="@+id/sort_button"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="131dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="4dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="34dp"
         android:fontFamily="sans-serif"
         android:text="Sort by author"
         android:textAlignment="viewEnd"
@@ -45,8 +45,8 @@
         android:textSize="10sp"
         app:backgroundTint="#FFFFFF"
         app:iconTint="#EFEDED"
-        app:layout_constraintBottom_toBottomOf="@+id/book_list_title"
         app:layout_constraintStart_toEndOf="@+id/book_list_title"
+        app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="#E2DFE6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

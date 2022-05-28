@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BookReviewActivity">
+
+    <TextView
+        android:id="@+id/book_review_title"
+        android:layout_width="241dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="47dp"
+        android:fontFamily="serif-monospace"
+        android:text="Book Review"
+        android:textColor="#3F51B5"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rating_title"
+        android:layout_width="241dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="76dp"
+        android:fontFamily="serif-monospace"
+        android:text="Rating"
+        android:textColor="#3F51B5"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/book_review_body"
+        app:layout_constraintTop_toBottomOf="@+id/book_review_body" />
+
+    <EditText
+        android:id="@+id/book_review_body"
+        android:layout_width="314dp"
+        android:layout_height="142dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="Enter your thoughts"
+        android:inputType="textMultiLine"
+        android:textAlignment="textStart"
+        android:maxLength="140"
+        app:layout_constraintStart_toStartOf="@+id/book_review_title"
+        app:layout_constraintTop_toBottomOf="@+id/book_review_title"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:id="@+id/book_review_button"
+        android:layout_width="311dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:text="Apply Changes"
+        app:backgroundTint="#3F51B5"
+        app:layout_constraintStart_toStartOf="@+id/book_review_body"
+        app:layout_constraintTop_toBottomOf="@+id/book_rating_bar" />
+
+    <RatingBar
+        android:id="@+id/book_rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize="0.5"
+        android:numStars="5"
+        android:rating="1.0"
+        app:layout_constraintStart_toStartOf="@+id/book_review_body"
+        app:layout_constraintTop_toBottomOf="@+id/rating_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
