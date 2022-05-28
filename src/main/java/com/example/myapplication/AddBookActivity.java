@@ -15,13 +15,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.InfoClass.book;
 import com.google.gson.Gson;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,6 +66,8 @@ public class AddBookActivity extends AppCompatActivity {
                 Log.v("AddBookActivity", url);
                 RequestQueue requestQueue = Volley.newRequestQueue(AddBookActivity.this);
                 //isbn="9787806767245";
+                //9787506380263
+                //9787536457577
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                         url, null, new Response.Listener<JSONObject>() {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -87,6 +93,9 @@ public class AddBookActivity extends AppCompatActivity {
                                 isbn_add_button.setOnClickListener(new View.OnClickListener(){
                                     @Override
                                     public void onClick(View v) {
+                                        book newbook = new book(name,author,press,year);
+                                        InfoClass info = (InfoClass)getApplicationContext();
+                                        info.addbook(newbook);
                                         new AlertDialog.Builder(AddBookActivity.this).setMessage("添加成功！")
                                                         .setPositiveButton("确认", new DialogInterface.OnClickListener() {
                                                             @Override
@@ -95,6 +104,7 @@ public class AddBookActivity extends AppCompatActivity {
                                                             }
                                                         }).show();
                                         Log.v("add_button","eyyy");
+
                                     }
                                 });
                             }
