@@ -94,17 +94,33 @@ public class AddBookActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(View v) {
                                         book newbook = new book(name,author,press,year);
+                                        boolean dup_flag = false;
                                         InfoClass info = (InfoClass)getApplicationContext();
-                                        info.addbook(newbook);
-                                        new AlertDialog.Builder(AddBookActivity.this).setMessage("添加成功！")
-                                                        .setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialog, int which) {
+                                        Log.v("duplicate", "info size: " + InfoClass.bookinfo.size());
+                                        for(int i = 0; i < InfoClass.bookinfo.size(); i++){
+                                            if(newbook.equals(InfoClass.bookinfo.get(i))){
+                                                dup_flag = true;
+                                            }
+                                        }
+                                        if(dup_flag == false){
+                                            info.addbook(newbook);
+                                            new AlertDialog.Builder(AddBookActivity.this).setMessage("Successfully added！")
+                                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
 
-                                                            }
-                                                        }).show();
-                                        Log.v("add_button","eyyy");
+                                                        }
+                                                    }).show();
+                                        }
+                                        else {
+                                            new AlertDialog.Builder(AddBookActivity.this).setMessage("The book is already on your shelf！")
+                                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
 
+                                                        }
+                                                    }).show();
+                                        }
                                     }
                                 });
                             }

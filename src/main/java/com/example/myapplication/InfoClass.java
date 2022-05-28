@@ -37,6 +37,11 @@ public class InfoClass extends Application{
             return year;
         }
 
+        public boolean equals(book b){
+            if(name == b.name && author == b.author && press == b.press && year == b.year)
+                return true;
+            return false;
+        }
     }
     public void addbook(book newbook){
         bookinfo.add(newbook);

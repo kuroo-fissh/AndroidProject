@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,18 +15,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class BookListActivity extends AppCompatActivity {
 
     private Button sort_button;
+    private TextView manage_menu;
 
-    public class bookAdatper extends  RecyclerView.Adapter<bookAdatper.ViewHolder>{
-         private List<InfoClass.book> myBookList;
+    public static class bookAdatper extends  RecyclerView.Adapter<bookAdatper.ViewHolder>{
+        private List<InfoClass.book> myBookList;
+        private bookAdatper.OnItemClickListener onItemClickListener;
 
-         @NonNull
+        @NonNull
          @Override
          public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
              View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.book_item,parent,false);
@@ -38,6 +45,14 @@ public class BookListActivity extends AppCompatActivity {
              holder.bookAuthor.setText(book.getAuthor());
              holder.bookyear.setText(book.getYear());
              holder.bookpress.setText(book.getPress());
+             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                 @Override
+                 public boolean onLongClick(View v) {
+                     int position = holder.getLayoutPosition();
+                     onItemClickListener.onItemLongClick(holder.itemView, position);
+                     return true;
+                 }
+             });
          }
 
          @Override
@@ -63,13 +78,18 @@ public class BookListActivity extends AppCompatActivity {
             this.myBookList = myBookList;
         }
 
+        public interface OnItemClickListener{
+            void onItemLongClick(View view,int position);
+        }
 
+        public void setOnItemClickListener(bookAdatper.OnItemClickListener listener){
+            this.onItemClickListener = listener;
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        InfoClass info = (InfoClass)getApplicationContext();
         setContentView(R.layout.activity_book_list);
         //拿一下那个RecyclerView
         //9787806767245
@@ -77,7 +97,27 @@ public class BookListActivity extends AppCompatActivity {
         //InfoClass.bookinfo.add(new InfoClass.book("name","author","press","year"));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new bookAdatper(InfoClass.bookinfo));
+
+        final bookAdatper adatper = new bookAdatper(InfoClass.bookinfo);
+        Log.v("adapter", "adapter listener works");
+        adatper.setOnItemClickListener(new bookAdatper.OnItemClickListener(){
+            @Override
+            public void onItemLongClick(View view, int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(BookListActivity.this);
+                builder.setMessage("Delete item?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        InfoClass.bookinfo.remove(position);
+                        adatper.notifyDataSetChanged();
+                    }
+                });
+                builder.setNeutralButton("cancel", null);
+                builder.create().show();
+            }
+        });
+
+        recyclerView.setAdapter(adatper);
 
         sort_button = findViewById(R.id.sort_button);
         sort_button.setOnClickListener(new View.OnClickListener() {
@@ -88,16 +128,15 @@ public class BookListActivity extends AppCompatActivity {
                     Log.v("sort", "sort by author");
                     InfoClass info = (InfoClass)getApplicationContext();
                     info.sortbyauthor();
-                    recyclerView.setAdapter(new bookAdatper(InfoClass.bookinfo));
+                    recyclerView.setAdapter(adatper);
                 }
                 else{
                     sort_button.setText("Sort by author");
                     InfoClass info = (InfoClass)getApplicationContext();
                     info.sortbyyear();
-                    recyclerView.setAdapter(new bookAdatper(InfoClass.bookinfo));
+                    recyclerView.setAdapter(adatper);
                 }
             }
         });
-        //如果类似userdefault可以用 但是没有要求
     }
 }
